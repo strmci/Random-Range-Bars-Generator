@@ -6,7 +6,7 @@ from datetime import datetime, date, timedelta
 
 #Adjustable parameters
 StartingPrice = 10000
-StartinTimeStamp = mktime(date(1990, 1, 1).timetuple())
+StartingTimeStamp = mktime(date(1990, 1, 1).timetuple())
 RangeBarPercent = 3
 CandleCount = 10000
 MaximumTimeRange = timedelta(days=2).total_seconds()
@@ -16,7 +16,7 @@ Open = StartingPrice
 Close = 0
 High = 0
 Low = 0
-TimeStamp = StartinTimeStamp
+TimeStamp = StartingTimeStamp
 RangeBarHeight = RangeBarPercent / 100 * StartingPrice
 
 with open('RandomRangeBars.csv', 'w') as line:
