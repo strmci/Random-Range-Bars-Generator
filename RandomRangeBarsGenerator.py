@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
+from time import mktime
 from random import randint, choice
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 #Adjustable parameters
 StartingPrice = 10000
-StartinTimeStamp = 631180800  # 1. 1. 1990
+StartinTimeStamp = mktime(date(1990, 1, 1).timetuple())
 RangeBarPercent = 3
 CandleCount = 10000
-MaximumTimeRange = 172800  # 2 days
+MaximumTimeRange = timedelta(days=2).total_seconds()
 
 #Non-adjustable parameters
 Open = StartingPrice
