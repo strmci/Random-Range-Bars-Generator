@@ -46,5 +46,6 @@ with open('RandomRangeBars.csv', 'w', newline='') as csv_file:
             High = Close + RangeBarHeight
             Low = Close
 
-        csv_writer.writerow([date, time, Open, High, Low, Close])
+        row = [date, time] + ['{:.3f}'.format(i) for i in [Open, High, Low, Close]]
+        csv_writer.writerow(row)
 
