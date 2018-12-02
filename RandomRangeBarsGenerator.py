@@ -25,7 +25,7 @@ for candle_num in range(CandleCount):
         'BarTime': randint(0, MaximumTimeRange),
     }
 
-with open('RandomRangeBars.csv', 'a') as line:
+with open('RandomRangeBars.csv', 'w') as line:
     line.write("date,time,open,high,low,close\n")
 
     for candle_num in range(CandleCount):
