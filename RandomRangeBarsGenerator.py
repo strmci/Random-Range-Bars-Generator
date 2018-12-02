@@ -22,7 +22,7 @@ RangeBarHeight = RangeBarPercent / 100 * StartingPrice
 
 with open('RandomRangeBars.csv', 'w', newline='') as csv_file:
     csv_writer = writer(csv_file, delimiter=',', quotechar='"', quoting=QUOTE_MINIMAL)
-    csv_writer.writerow(['date', 'time', 'open', 'high', 'low', 'close'])
+    csv_writer.writerow(['datetime', 'open', 'high', 'low', 'close'])
 
     for i, candle_num in enumerate(range(CandleCount)):
         Randoms = {
