@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import random
+from random import randint, choice
 import datetime
 
 #Adjustable parameters
@@ -24,10 +24,11 @@ f.close()
 
 for i in range(1, CandleCount):
 
-    #Randoms (Bull, Bear, Knot, BarTime)
-    BarType = random.randrange(1, 3, 1)
-    KnotHeight = random.randrange(1, 101, 1)
-    BarTime = random.randrange(1, MaximumTimeRange, 1)
+    Randoms = {
+        'BarType': choice(['Bull', 'Bear']),
+        'KnotHeight': randint(0, 100),
+        'BarTime': randint(0, MaximumTimeRange),
+    }
 
     if i == 1:
         Open = StartingPrice
@@ -38,16 +39,14 @@ for i in range(1, CandleCount):
     else:
         Open = Close
         RangeBarHeight = RangeBarPercent / 100 * Close
-        TimeStamp = TimeStamp + BarTime
+        TimeStamp = TimeStamp + Randoms['BarTime']
 
-    #BullBar
-    if BarType == 1:
-        Close = Open + (RangeBarHeight - (KnotHeight / 100 * RangeBarHeight))
+    if Randoms['BarType'] == 'Bull':
+        Close = Open + (RangeBarHeight - (Randoms['KnotHeight'] / 100 * RangeBarHeight))
         Low = Close - RangeBarHeight
         High = Close
-    #BearBar
-    elif BarType == 2:
-        Close = Open - (RangeBarHeight - (KnotHeight / 100 * RangeBarHeight))
+    elif Randoms['BarType'] == 'Bear':
+        Close = Open - (RangeBarHeight - (Randoms['KnotHeight'] / 100 * RangeBarHeight))
         High = Close + RangeBarHeight
         Low = Close
 
