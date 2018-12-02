@@ -24,14 +24,14 @@ with open('RandomRangeBars.csv', 'w', newline='') as csv_file:
     csv_writer = writer(csv_file, delimiter=',', quotechar='"', quoting=QUOTE_MINIMAL)
     csv_writer.writerow(['date', 'time', 'open', 'high', 'low', 'close'])
 
-    for i, candle_num in enumerate(range(CandleCount)):
+    for candle_num in range(CandleCount):
         Randoms = {
             'BarType': choice(['Bull', 'Bear']),
             'KnotHeight': randint(1, 100),
             'BarTime': randint(1, MaximumTimeRange),
         }
 
-        if i != 0:
+        if candle_num != 0:
             Open = Close
             RangeBarHeight = RangeBarPercent / 100 * Close
             TimeStamp += Randoms['BarTime']
