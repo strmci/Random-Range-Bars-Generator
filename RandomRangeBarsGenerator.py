@@ -17,25 +17,18 @@ Low = 0
 TimeStamp = 0
 RangeBarHeight = RangeBarPercent / 100 * StartingPrice
 
-#clear file
-f = open("RandomRangeBars.csv", "w")
-f.truncate()
-f.close()
-
-for i in range(1, CandleCount):
-
+for candle_num in range(CandleCount):
     Randoms = {
         'BarType': choice(['Bull', 'Bear']),
         'KnotHeight': randint(0, 100),
         'BarTime': randint(0, MaximumTimeRange),
     }
 
-    if i == 1:
+    if candle_num == 0:
         Open = StartingPrice
         TimeStamp = StartinTimeStamp
         with open('RandomRangeBars.csv', 'a') as line:
-            line.write("date,time,open,high,low,close")
-            line.write("\n")
+            line.write("date,time,open,high,low,close\n")
     else:
         Open = Close
         RangeBarHeight = RangeBarPercent / 100 * Close
@@ -52,12 +45,7 @@ for i in range(1, CandleCount):
 
     time = datetime.datetime.fromtimestamp(TimeStamp).strftime('%Y-%m-%d,%H:%M:%S')
 
-    NewBar = (str(time)+','+str(format(Open, '.3f'))+','+str(format(High, '.3f'))+','+str(format(Low, '.3f'))+','+str(format(Close, '.3f')))
-
-
     with open('RandomRangeBars.csv', 'a') as line:
+        NewBar = '%s,%.3f,%.3f,%.3f,%.3f\n' % (time, Open, High, Low, Close)
         line.write(NewBar)
-        line.write("\n")
-
-
 
