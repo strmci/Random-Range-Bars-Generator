@@ -18,27 +18,20 @@ Low = 0
 TimeStamp = StartinTimeStamp
 RangeBarHeight = RangeBarPercent / 100 * StartingPrice
 
-for candle_num in range(CandleCount):
-    Randoms = {
-        'BarType': choice(['Bull', 'Bear']),
-        'KnotHeight': randint(0, 100),
-        'BarTime': randint(0, MaximumTimeRange),
-    }
-
 with open('RandomRangeBars.csv', 'w') as line:
     line.write("date,time,open,high,low,close\n")
 
-    for candle_num in range(CandleCount):
-
+    for i, candle_num in enumerate(range(CandleCount)):
         Randoms = {
             'BarType': choice(['Bull', 'Bear']),
-            'KnotHeight': randint(0, 100),
-            'BarTime': randint(0, MaximumTimeRange),
+            'KnotHeight': randint(1, 100),
+            'BarTime': randint(1, MaximumTimeRange),
         }
 
-        Open = Close
-        RangeBarHeight = RangeBarPercent / 100 * Close
-        TimeStamp = TimeStamp + Randoms['BarTime']
+        if i != 0:
+            Open = Close
+            RangeBarHeight = RangeBarPercent / 100 * Close
+            TimeStamp += Randoms['BarTime']
 
         if Randoms['BarType'] == 'Bull':
             Close = Open + (RangeBarHeight - (Randoms['KnotHeight'] / 100 * RangeBarHeight))
