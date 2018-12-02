@@ -3,6 +3,7 @@
 from time import mktime
 from random import randint, choice
 from datetime import datetime, date, timedelta
+from csv import writer, QUOTE_MINIMAL
 
 #Adjustable parameters
 StartingPrice = 10000
@@ -19,8 +20,9 @@ Low = 0
 TimeStamp = StartingTimeStamp
 RangeBarHeight = RangeBarPercent / 100 * StartingPrice
 
-with open('RandomRangeBars.csv', 'w') as line:
-    line.write("date,time,open,high,low,close\n")
+with open('RandomRangeBars.csv', 'w', newline='') as csv_file:
+    csv_writer = writer(csv_file, delimiter=',', quotechar='"', quoting=QUOTE_MINIMAL)
+    csv_writer.writerow(['date', 'time', 'open', 'high', 'low', 'close'])
 
     for i, candle_num in enumerate(range(CandleCount)):
         Randoms = {
@@ -33,6 +35,7 @@ with open('RandomRangeBars.csv', 'w') as line:
             Open = Close
             RangeBarHeight = RangeBarPercent / 100 * Close
             TimeStamp += Randoms['BarTime']
+        time = datetime.fromtimestamp(TimeStamp).strftime('%Y-%m-%d,%H:%M:%S')
 
         if Randoms['BarType'] == 'Bull':
             Close = Open + (RangeBarHeight - (Randoms['KnotHeight'] / 100 * RangeBarHeight))
@@ -43,8 +46,5 @@ with open('RandomRangeBars.csv', 'w') as line:
             High = Close + RangeBarHeight
             Low = Close
 
-        time = datetime.fromtimestamp(TimeStamp).strftime('%Y-%m-%d,%H:%M:%S')
-
-        NewBar = '%s,%.3f,%.3f,%.3f,%.3f\n' % (time, Open, High, Low, Close)
-        line.write(NewBar)
+        csv_writer.writerow([time, Open, High, Low, Close])
 
