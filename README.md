@@ -7,7 +7,7 @@ This python code generates dynamic random range bars, it can be used in Multicha
 
 StartingPrice = 10000 # Starting price for the chart
 
-StartinTimeStamp = 631180800   #Starting date and time for the chart (1. 1. 1990)
+StartingTimeStamp = 631180800   #Starting date and time for the chart (1. 1. 1990)
 
 RangeBarPercent = 3 # Range Bar height
 
