@@ -1,4 +1,4 @@
-# Range-Bars-Generator
+# Random-Range-Bars-Generator
 Dynamic Random Range Bars Generator
 
 This python code generates dynamic random range bars, it can be used in Multicharts platform to backtest automated strategies on random data. Every new range bar has different height according to last close and RangeBarPercent.
